@@ -47,9 +47,6 @@ def assign_benchmark_profile(ticker):
     else:
         return STRATEGY_BENCHMARKS['STANDARD_GROWTH'], "Standard"
 
-# ==============================================================================
-# 🚀 PERFORMANCE TEST RUNNER
-# ==============================================================================
 if __name__ == "__main__":
     
     # 1. THE "REPORT CARD" LIST
@@ -72,7 +69,7 @@ if __name__ == "__main__":
         "SPY", "QQQ", "IWM", "TLT", "GLD", "SLV", "ARKK"
     ]))
     
-    print(f"\n🔬 Initializing Model Benchmark with {len(universe_db)} tickers...")
+    print(f"\n Initializing Model Benchmark with {len(universe_db)} tickers...")
     engine = BacktesterEngine(universe_db, window_size=30)
     engine.initialize(progress_callback=lambda x: None)
     
@@ -80,7 +77,7 @@ if __name__ == "__main__":
     MIN_VOL_FILTER = 0.00 
     CONFIDENCE_REQ = 0.80 
     
-    print(f"\n📊 MODEL PERFORMANCE REPORT (Last 250 Days)")
+    print(f"\n MODEL PERFORMANCE REPORT (Last 250 Days)")
     print(f"   Config: 0bps Slippage | Long/Short Enabled | {CONFIDENCE_REQ*100}% Confidence Req")
     print("=" * 115)
     print(f"{'Ticker':<6} | {'Profile':<10} | {'Win Rate':<8} | {'Avg Win':<8} | {'Avg Loss':<8} | {'Trades':<6} | {'Final Eq'} | {'Expectancy'}")
@@ -158,3 +155,4 @@ if __name__ == "__main__":
             plt.tight_layout()
             plt.show()
         except: pass
+

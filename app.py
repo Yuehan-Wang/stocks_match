@@ -38,7 +38,7 @@ page = st.sidebar.radio("Navigation", ["Live Analysis", "Backtest Lab"])
 # PAGE 1: LIVE ANALYSIS
 # ==========================================
 if page == "Live Analysis":
-    st.title("🔮 Live Pattern Matcher")
+    st.title("Live Pattern Matcher")
     
     st.sidebar.header("Live Settings")
     target_ticker = st.sidebar.text_input("Target Ticker", value="NVDA").upper()
@@ -211,9 +211,9 @@ if page == "Live Analysis":
 # PAGE 2: BACKTEST LAB
 # ==========================================
 elif page == "Backtest Lab":
-    st.title("🧪 Strategy Backtest Lab")
+    st.title("Strategy Backtest Lab")
     
-    with st.expander("⚙️ Global Configuration (Universe & Index)", expanded=True):
+    with st.expander(" Global Configuration (Universe & Index)", expanded=True):
         c1, c2 = st.columns([3, 1])
         with c1:
             st.info("Universe: The library of historical patterns the AI learns from.")
@@ -279,7 +279,7 @@ elif page == "Backtest Lab":
                         'tp': tp, 'sl': sl, 'trail_trig': tr_trig, 'trail_dist': tr_dist
                     }
 
-    if st.button("🚀 Run Backtest Simulation", type="primary"):
+    if st.button("Run Backtest Simulation", type="primary"):
         if not engine.is_initialized:
             st.warning("Please click 'Rebuild/Update Database' first!")
         else:

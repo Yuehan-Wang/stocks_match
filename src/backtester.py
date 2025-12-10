@@ -222,3 +222,37 @@ class BacktesterEngine:
             equity_curve.append(equity_curve[-1])
 
         return pd.DataFrame(results), equity_curve
+    
+class StrategyConfig:
+    """
+    Manages default trading parameters based on stock volatility profiles.
+    """
+    STRATEGY_BENCHMARKS = {
+        'HIGH_VOLATILITY': {
+            'tp': 0.20, 'sl': -0.08, 'trail_trig': 0.10, 'trail_dist': 0.04   
+        },
+        'STANDARD_GROWTH': {
+            'tp': 0.12, 'sl': -0.05, 'trail_trig': 0.06, 'trail_dist': 0.02
+        },
+        'LOW_VOLATILITY': {
+            'tp': 0.05, 'sl': -0.025, 'trail_trig': 0.03, 'trail_dist': 0.01
+        }
+    }
+
+    @staticmethod
+    def get_default_params(ticker):
+        high_beta = [
+            "NVDA", "AMD", "TSLA", "MSTR", "COIN", "HOOD", 
+            "PLTR", "SMCI", "MARA", "RIOT", "DKNG", "SQ", "ROKU", "NET"
+        ]
+        low_beta = [
+            "KO", "PEP", "JNJ", "MCD", "WMT", "PG", "VZ", "T",
+            "XOM", "CVX", "JPM", "BAC", "BRK-B", "UNH"
+        ]
+        
+        if ticker in high_beta:
+            return StrategyConfig.STRATEGY_BENCHMARKS['HIGH_VOLATILITY']
+        elif ticker in low_beta:
+            return StrategyConfig.STRATEGY_BENCHMARKS['LOW_VOLATILITY']
+        else:
+            return StrategyConfig.STRATEGY_BENCHMARKS['STANDARD_GROWTH']
